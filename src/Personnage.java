@@ -2,14 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Personnage {
-    private int endurance;
-    private int force;
-    private int pv;
-    private int pvMax;
-    private int bonusEnd;
-    private int bonusFor;
-    private int gold ;
-    private int cuire ;
+    private int endurance,force,pv,pvMax,bonusEnd,bonusFor,gold,cuire;
     private boolean enVie = true;
 
     public Personnage(int bonusEnd,int bonusFor,int gold,int cuire) {
@@ -17,7 +10,7 @@ public abstract class Personnage {
         this.force = setStat();
         this.bonusEnd = bonusEnd;
         this.bonusFor = bonusFor;
-        this.pv = this.endurance+this.bonusEnd + modificateur(this.endurance+this.bonusEnd);
+        this.pv = this.endurance + this.bonusEnd + modificateur(this.endurance+this.bonusEnd);
         this.pvMax = this.pv;
         this.gold = gold;
         this.cuire = cuire;

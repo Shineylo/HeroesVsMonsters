@@ -1,7 +1,16 @@
 public class Hero extends Personnage{
+    int x,y;
 
     public Hero(int bonusEnd,int bonusFor) {
         super(bonusEnd,bonusFor,0,0);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public void repos(){
@@ -16,4 +25,11 @@ public class Hero extends Personnage{
             this.setCuire(monstre.getCuire());
         }
     }
+
+    public void position(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+
 }
