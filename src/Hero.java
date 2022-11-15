@@ -1,9 +1,7 @@
 public class Hero extends Personnage{
-    private int gold;
-    private int cuire;
 
     public Hero(int bonusEnd,int bonusFor) {
-        super(bonusEnd,bonusFor);
+        super(bonusEnd,bonusFor,0,0);
     }
 
     public void repos(){
@@ -11,6 +9,11 @@ public class Hero extends Personnage{
     }
 
     public void depouiller(Monstre monstre){
-        //Recois de monstre
+        if(monstre instanceof Bourse){
+            this.setGold(monstre.getGold());
+        }
+        if(monstre instanceof Depecable){
+            this.setCuire(monstre.getCuire());
+        }
     }
 }

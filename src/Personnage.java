@@ -8,6 +8,20 @@ public abstract class Personnage {
     private int pvMax;
     private int bonusEnd;
     private int bonusFor;
+    private int gold ;
+    private int cuire ;
+    private boolean enVie = true;
+
+    public Personnage(int bonusEnd,int bonusFor,int gold,int cuire) {
+        this.endurance = setStat();
+        this.force = setStat();
+        this.bonusEnd = bonusEnd;
+        this.bonusFor = bonusFor;
+        this.pv = this.endurance+this.bonusEnd + modificateur(this.endurance+this.bonusEnd);
+        this.pvMax = this.pv;
+        this.gold = gold;
+        this.cuire = cuire;
+    }
 
     public Personnage(int bonusEnd,int bonusFor) {
         this.endurance = setStat();
@@ -16,7 +30,10 @@ public abstract class Personnage {
         this.bonusFor = bonusFor;
         this.pv = this.endurance+this.bonusEnd + modificateur(this.endurance+this.bonusEnd);
         this.pvMax = this.pv;
+        this.gold = 0;
+        this.cuire = 0;
     }
+
 
     public int modificateur(int base){
         if(base<=15){
@@ -55,10 +72,29 @@ public abstract class Personnage {
 
     public void recevoirDegat(int damage){
         this.pv -= damage;
+        if(this.pv <= 0){
+            this.enVie = false;
+        }
     }
 
     public void frapper(Personnage personnage){
         De de = new De(1,4);
         personnage.recevoirDegat(de.lancer() + modificateur(this.force+this.bonusFor));
+    }
+
+    public int getCuire() {
+        return cuire;
+    }
+
+    public void setCuire(int cuire) {
+        this.cuire = this.cuire + cuire;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = this.gold + gold;
     }
 }
