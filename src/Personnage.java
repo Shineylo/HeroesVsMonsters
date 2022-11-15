@@ -6,11 +6,15 @@ public abstract class Personnage {
     private int force;
     private int pv;
     private int pvMax;
+    private int bonusEnd;
+    private int bonusFor;
 
-    public Personnage() {
+    public Personnage(int bonusEnd,int bonusFor) {
         this.endurance = setStat();
         this.force = setStat();
-        this.pv = this.endurance + modificateur(this.endurance);
+        this.bonusEnd = bonusEnd;
+        this.bonusFor = bonusFor;
+        this.pv = this.endurance+this.bonusEnd + modificateur(this.endurance+this.bonusEnd);
         this.pvMax = this.pv;
     }
 
@@ -29,6 +33,7 @@ public abstract class Personnage {
             return 2;
         }
     }
+
     public int setStat(){
         int stat = 0;
         De de = new De(1,6);
@@ -44,18 +49,6 @@ public abstract class Personnage {
         return stat;
     }
 
-    public int getEndurance() {
-        return endurance;
-    }
-
-    public int getForce() {
-        return force;
-    }
-
-    public int getPv() {
-        return pv;
-    }
-
     public void seSoigner(){
         this.pv = this.pvMax;
     }
@@ -66,6 +59,6 @@ public abstract class Personnage {
 
     public void frapper(Personnage personnage){
         De de = new De(1,4);
-        personnage.recevoirDegat(de.lancer() + modificateur(this.force));
+        personnage.recevoirDegat(de.lancer() + modificateur(this.force+this.bonusFor));
     }
 }

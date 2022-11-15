@@ -1,7 +1,9 @@
 public class Hero extends Personnage{
+    private int gold;
+    private int cuire;
 
-    public Hero() {
-        super();
+    public Hero(int bonusEnd,int bonusFor) {
+        super(bonusEnd,bonusFor);
     }
 
     public void repos(){
